@@ -53,7 +53,7 @@ class MoviesListFragment : Fragment() {
     private fun initViewModel() {
         moviesListViewModule =
             ViewModelProvider(this)[MovieListViewModel::class.java]
-        moviesListViewModule.getObserver()
+        moviesListViewModule.getMoviesListObserver()
             .observe(this@MoviesListFragment.viewLifecycleOwner) { moviesList ->
                 if (moviesList == null) {
                     showToastMsg("Sorry error getting movies list.")
@@ -63,6 +63,10 @@ class MoviesListFragment : Fragment() {
                     moviesListAdapter.loadMoviesList(moviesList)
                     moviesListAdapter.notifyDataSetChanged()
                 }
+            }
+        moviesListViewModule.getRequestTypeObserver()
+            .observe(this@MoviesListFragment.viewLifecycleOwner) { requireType ->
+                binding.tvMovieListType.text = requireType.name
             }
         moviesListViewModule.makeCall()
     }

@@ -1,6 +1,5 @@
 package dev.zaherabd.moviesapp.features.movieslist
 
-import android.widget.MultiAutoCompleteTextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.zaherabd.moviesapp.di.NetworkModule
@@ -18,22 +17,30 @@ enum class RequestType {
 class MovieListViewModel : ViewModel() {
 
     private var moviesList = MutableLiveData<List<MovieResponse>?>()
-    private var requestType = RequestType.POPULAR
+    private var requestType = MutableLiveData<RequestType>()
 
 
     private var mService: MoviesCallService = NetworkModule().provideMovieService()
 
-    fun getObserver(): MutableLiveData<List<MovieResponse>?> {
+    init {
+        requestType.postValue(RequestType.NOW_PLAYING)
+    }
+
+    fun getRequestTypeObserver(): MutableLiveData<RequestType> {
+        return requestType
+    }
+
+    fun getMoviesListObserver(): MutableLiveData<List<MovieResponse>?> {
         return moviesList
     }
 
     fun updateRequestType(requestType: RequestType) {
-        this.requestType = requestType
+        this.requestType.postValue(requestType)
         makeCall()
     }
 
-     fun makeCall() {
-        val call: Call<APIResponse> = when (requestType) {
+    fun makeCall() {
+        val call: Call<APIResponse> = when (requestType.value) {
             RequestType.NOW_PLAYING -> {
                 mService.getNowPlaying()
             }
@@ -44,6 +51,10 @@ class MovieListViewModel : ViewModel() {
 
             RequestType.TOP_RATED -> {
                 mService.getTopRated()
+            }
+
+            else -> {
+                return
             }
         }
         call.enqueue(object : Callback<APIResponse> {
