@@ -13,6 +13,7 @@ import dev.zaherabd.moviesapp.Constants.TAG
 import dev.zaherabd.moviesapp.R
 import dev.zaherabd.moviesapp.databinding.FragmentMoviesListBinding
 import dev.zaherabd.moviesapp.di.NetworkModule
+import dev.zaherabd.moviesapp.features.moviedetails.MovieDetailsFragmentDirections
 import dev.zaherabd.moviesapp.network.MoviesCallService
 import dev.zaherabd.moviesapp.network.module.APIResponse
 import retrofit2.Call
@@ -48,10 +49,11 @@ class MoviesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mService = NetworkModule().provideMovieService()
         moviesListAdapter = MoviesListAdapter()
-        moviesListAdapter.onItemClick = { movie ->
+        moviesListAdapter.onItemClick =
+            { movie ->
             val bundle = Bundle()
-            bundle.putSerializable("movie_id", movie.id)
-            findNavController().navigate(R.id.show_movie_details, bundle)
+            val action = MoviesListFragmentDirections.showMovieDetails(movie)
+            findNavController().navigate(action)
         }
         binding.btnPopular.setOnClickListener {
             getPopularMovies()
@@ -66,7 +68,6 @@ class MoviesListFragment : Fragment() {
         binding.rvMoviesList.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = moviesListAdapter
-            Log.d(TAG, "onViewCreated: 2")
         }
     }
 

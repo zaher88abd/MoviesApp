@@ -1,8 +1,9 @@
 package dev.zaherabd.moviesapp.network.module
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class MovieResponse(
+class MovieResponse(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
@@ -25,4 +26,4 @@ data class MovieResponse(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Long,
-)
+) : Serializable

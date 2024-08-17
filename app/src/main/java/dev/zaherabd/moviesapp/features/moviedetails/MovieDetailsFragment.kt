@@ -1,12 +1,16 @@
-package dev.zaherabd.moviesapp
+package dev.zaherabd.moviesapp.features.moviedetails
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
+import dev.zaherabd.moviesapp.Constants.TAG
 import dev.zaherabd.moviesapp.databinding.FragmentMoiveDetailsBinding
+import dev.zaherabd.moviesapp.network.module.MovieResponse
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -19,6 +23,7 @@ class MovieDetailsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val args: MovieDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +36,9 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val movie = args.movieObj
+        Log.d(TAG, "onViewCreated: ${movie.id}")
 
-//        binding.buttonSecond.setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
     }
 
     override fun onDestroyView() {

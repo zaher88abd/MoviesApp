@@ -14,13 +14,16 @@
         <action
             android:id="@+id/show_movie_details"
             app:destination="@id/MovieDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/MovieDetailsFragment"
-        android:name="dev.zaherabd.moviesapp.MovieDetailsFragment"
+        android:name="dev.zaherabd.moviesapp.features.moviedetails.MovieDetailsFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_moive_details">
-
+        <argument
+            android:name="movie_obj"
+            app:argType="dev.zaherabd.moviesapp.network.module.MovieResponse" />
         <action
             android:id="@+id/back_to_movies_fragment"
             app:destination="@id/MovieListFragment" />
