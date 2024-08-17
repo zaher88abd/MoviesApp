@@ -4,9 +4,6 @@ import dev.zaherabd.moviesapp.BuildConfig
 import dev.zaherabd.moviesapp.network.module.APIResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.HEAD
-import retrofit2.http.Header
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface MoviesCallService {
