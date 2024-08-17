@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="dev.zaherabd.moviesapp.MoviesListFragment"
+        android:name="dev.zaherabd.moviesapp.features.movieslist.MoviesListFragment"
         android:label="@string/movies_list_fragment"
         tools:layout="@layout/fragment_movies_list">
 

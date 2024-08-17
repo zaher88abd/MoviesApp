@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoviesListFragment">
+    tools:context=".features.movieslist.MoviesListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,38 +19,39 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/button_first"
+                android:id="@+id/btn_now_playing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/now_playing"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_second"
+                app:layout_constraintEnd_toStartOf="@+id/btn_popular"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button_second"
+                android:id="@+id/btn_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/popular"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_third"
-                app:layout_constraintStart_toEndOf="@+id/button_first"
+                app:layout_constraintEnd_toStartOf="@+id/btn_top_rated"
+                app:layout_constraintStart_toEndOf="@+id/btn_now_playing"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button_third"
+                android:id="@+id/btn_top_rated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/top_rated"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button_second"
+                app:layout_constraintStart_toEndOf="@+id/btn_popular"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movies_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
