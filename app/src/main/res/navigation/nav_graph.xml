@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="dev.zaherabd.moviesapp.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/movies_list_fragment"
         tools:layout="@layout/fragment_first">
 
         <action
