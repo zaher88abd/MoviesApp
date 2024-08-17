@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.zaherabd.moviesapp.databinding.FragmentFirstBinding
+import dev.zaherabd.moviesapp.databinding.FragmentMoviesListBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class MoviesListFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentMoviesListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,7 +23,7 @@ class MoviesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         return binding.root
 
     }
