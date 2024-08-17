@@ -16,6 +16,7 @@ import dev.zaherabd.moviesapp.network.module.MovieResponse
 
 class MoviesListAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
     private var moviesList: List<MovieResponse>? = null
+    var onItemClick: ((MovieResponse) -> Unit)? = null
 
     fun loadMoviesList(moviesList: List<MovieResponse>) {
         this.moviesList = moviesList
@@ -46,6 +47,9 @@ class MoviesListAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
                         .load(Constants.IMAGES_BASE_URL + movies[position].posterPath)
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into(posterIV)
+                    setOnClickListener {
+                        onItemClick?.invoke(movies[position])
+                    }
                 }
             }
         } catch (e: Exception) {

@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.zaherabd.moviesapp.Constants.TAG
+import dev.zaherabd.moviesapp.R
 import dev.zaherabd.moviesapp.databinding.FragmentMoviesListBinding
 import dev.zaherabd.moviesapp.di.NetworkModule
 import dev.zaherabd.moviesapp.network.MoviesCallService
@@ -46,6 +48,11 @@ class MoviesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mService = NetworkModule().provideMovieService()
         moviesListAdapter = MoviesListAdapter()
+        moviesListAdapter.onItemClick = { movie ->
+            val bundle = Bundle()
+            bundle.putSerializable("movie_id", movie.id)
+            findNavController().navigate(R.id.show_movie_details, bundle)
+        }
         binding.btnPopular.setOnClickListener {
             getPopularMovies()
         }

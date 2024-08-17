@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/MovieListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/MovieListFragment"
         android:name="dev.zaherabd.moviesapp.features.movieslist.MoviesListFragment"
         android:label="@string/movies_list_fragment"
         tools:layout="@layout/fragment_movies_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/show_movie_details"
+            app:destination="@id/MovieDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/MovieDetailsFragment"
         android:name="dev.zaherabd.moviesapp.MovieDetailsFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_moive_details">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/back_to_movies_fragment"
+            app:destination="@id/MovieListFragment" />
     </fragment>
 </navigation>
