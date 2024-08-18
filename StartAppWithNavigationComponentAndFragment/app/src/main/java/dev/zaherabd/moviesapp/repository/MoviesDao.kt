@@ -8,7 +8,7 @@ import androidx.room.Query
 interface MoviesDao {
     @Query("Select * from movies")
     suspend fun getMovies():List<MovieEntity>
-    
+
     @Insert
     suspend fun insertMovie(movie:MovieEntity)
 
