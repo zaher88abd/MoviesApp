@@ -10,6 +10,7 @@ import dev.zaherabd.moviesapp.network.MoviesCallService
 import dev.zaherabd.moviesapp.network.MoviesCoroutineService
 import dev.zaherabd.moviesapp.network.module.APIResponse
 import dev.zaherabd.moviesapp.network.module.MovieResponse
+import dev.zaherabd.moviesapp.repository.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -32,6 +33,9 @@ class MovieListViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var mService: MoviesCoroutineService
+
+    @Inject
+    lateinit var database: AppDatabase
 
 
     init {

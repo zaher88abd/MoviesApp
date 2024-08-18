@@ -2,10 +2,12 @@ package dev.zaherabd.moviesapp.repository
 
 import android.content.Context
 import androidx.room.Database
-import androidx.room.Entity
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import dagger.Module
 
+
+@Module
 @Database(entities = [MoviesDao::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun moviesDao(): MoviesDao
