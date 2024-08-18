@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.zaherabd.moviesapp.di.NetworkModule
 import dev.zaherabd.moviesapp.network.MoviesCallService
+import dev.zaherabd.moviesapp.network.MoviesCoroutineService
 import dev.zaherabd.moviesapp.network.module.APIResponse
 import dev.zaherabd.moviesapp.network.module.MovieResponse
 import retrofit2.Call
@@ -20,7 +21,7 @@ class MovieListViewModel : ViewModel() {
     private var requestType = MutableLiveData<RequestType>()
 
 
-    private var mService: MoviesCallService = NetworkModule().provideMovieService()
+    private var mService: MoviesCoroutineService = NetworkModule().provideMovieService()
 
     init {
         requestType.postValue(RequestType.NOW_PLAYING)
