@@ -11,6 +11,7 @@ import dev.zaherabd.moviesapp.network.MoviesCoroutineService
 import dev.zaherabd.moviesapp.network.module.APIResponse
 import dev.zaherabd.moviesapp.network.module.MovieResponse
 import dev.zaherabd.moviesapp.repository.AppDatabase
+import dev.zaherabd.moviesapp.repository.MovieEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -76,13 +77,25 @@ class MovieListViewModel @Inject constructor() : ViewModel() {
                         mService.getNowPlaying()
                     }
                 }
-                Log.d(TAG, "makeCall: 2")
                 call
             }
-            Log.d(TAG, "makeCall: 3 ${response.body()?.results}")
             moviesList.postValue(response.body()?.results)
         }
 
+    }
+
+    fun addMovieToUserList(movie: MovieResponse) {
+        viewModelScope.launch {
+            database.moviesDao().insertMovie(
+                movie = MovieEntity(
+                    movie.id,
+                    movie.title,
+                    movie.releaseDate,
+                    movie.voteAverage,
+                    movie.posterPath
+                )
+            )
+        }
     }
 
 }

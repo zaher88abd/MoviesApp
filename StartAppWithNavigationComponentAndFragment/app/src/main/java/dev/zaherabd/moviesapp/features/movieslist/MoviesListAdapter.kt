@@ -17,10 +17,10 @@ import dev.zaherabd.moviesapp.network.module.MovieResponse
 class MoviesListAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
     private var moviesList: List<MovieResponse>? = null
     var onItemClick: ((MovieResponse) -> Unit)? = null
+    var onAddItemClicked: ((MovieResponse) -> Unit)? = null
 
     fun loadMoviesList(moviesList: List<MovieResponse>) {
         this.moviesList = moviesList
-        Log.d(TAG, "loadMoviesList: ${this.moviesList?.size}")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -43,12 +43,16 @@ class MoviesListAdapter() : RecyclerView.Adapter<MovieViewHolder>() {
                     findViewById<TextView>(R.id.tv_movie_release_date).text =
                         movies[position].releaseDate
                     val posterIV = findViewById<ImageView>(R.id.iv_movie)
+                    val addMovieBtn = findViewById<ImageView>(R.id.iv_add_movie)
                     Glide.with(context)
                         .load(Constants.IMAGES_BASE_URL + movies[position].posterPath)
                         .diskCacheStrategy(DiskCacheStrategy.DATA)
                         .into(posterIV)
                     setOnClickListener {
                         onItemClick?.invoke(movies[position])
+                    }
+                    addMovieBtn.setOnClickListener {
+                        onAddItemClicked?.invoke(movies[position])
                     }
                 }
             }

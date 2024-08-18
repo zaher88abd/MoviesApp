@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="movies_list_fragment">Movies List</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="my_movies">My Movies</string>
     <string name="now_playing">Now Playing</string>
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>

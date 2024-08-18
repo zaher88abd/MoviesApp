@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/now_playing"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_popular"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -31,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/popular"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_top_rated"
             app:layout_constraintStart_toEndOf="@+id/btn_now_playing"
@@ -41,9 +43,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/top_rated"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_me_movies"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/btn_popular"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_me_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_movies"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_popular"
+            app:layout_constraintStart_toEndOf="@id/btn_top_rated"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

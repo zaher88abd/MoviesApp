@@ -80,6 +80,10 @@ class MoviesListFragment : Fragment() {
                 val action = MoviesListFragmentDirections.showMovieDetails(movie)
                 findNavController().navigate(action)
             }
+        moviesListAdapter.onAddItemClicked = {
+            movie ->
+            moviesListViewModule.addMovieToUserList()
+        }
         binding.rvMoviesList.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = moviesListAdapter
