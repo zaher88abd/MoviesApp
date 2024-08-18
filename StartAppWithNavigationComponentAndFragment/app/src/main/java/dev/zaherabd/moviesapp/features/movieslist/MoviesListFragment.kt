@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.zaherabd.moviesapp.MovieApp
 import dev.zaherabd.moviesapp.databinding.FragmentMoviesListBinding
+import javax.inject.Inject
 
 
 /**
@@ -18,12 +20,11 @@ class MoviesListFragment : Fragment() {
 
     private var _binding: FragmentMoviesListBinding? = null
 
-    private lateinit var moviesListViewModule: MovieListViewModel
+    @Inject
+    lateinit var moviesListViewModule: MovieListViewModel
 
     private lateinit var moviesListAdapter: MoviesListAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,13 +32,13 @@ class MoviesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        initViewModel()
+        initRV()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
-        initRV()
         binding.btnPopular.setOnClickListener {
             getPopularMovies()
         }
@@ -47,12 +48,11 @@ class MoviesListFragment : Fragment() {
         binding.btnNowPlaying.setOnClickListener {
             getNowPlaying()
         }
-
+        moviesListViewModule.makeCall()
     }
 
     private fun initViewModel() {
-        moviesListViewModule =
-            ViewModelProvider(this)[MovieListViewModel::class.java]
+        MovieApp.getAppComponent().inject(this)
         moviesListViewModule.getMoviesListObserver()
             .observe(this@MoviesListFragment.viewLifecycleOwner) { moviesList ->
                 if (moviesList == null) {
@@ -68,11 +68,9 @@ class MoviesListFragment : Fragment() {
             .observe(this@MoviesListFragment.viewLifecycleOwner) { requireType ->
                 binding.tvMovieListType.text = requireType.name
             }
-        moviesListViewModule.makeCall()
     }
 
     private fun showToastMsg(msg: String) {
-
     }
 
     private fun initRV() {
